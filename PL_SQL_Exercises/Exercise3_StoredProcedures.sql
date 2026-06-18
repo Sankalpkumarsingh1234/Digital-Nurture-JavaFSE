@@ -1,15 +1,11 @@
 SET SERVEROUTPUT ON;
 
---------------------------------------------------
--- DROP TABLES (Ignore errors if tables don't exist)
---------------------------------------------------
+
 
 DROP TABLE Accounts;
 DROP TABLE Employees;
 
---------------------------------------------------
--- CREATE TABLES
---------------------------------------------------
+
 
 CREATE TABLE Accounts (
     AccountID NUMBER PRIMARY KEY,
@@ -25,9 +21,7 @@ CREATE TABLE Employees (
     Salary NUMBER(10,2)
 );
 
---------------------------------------------------
--- INSERT SAMPLE DATA
---------------------------------------------------
+
 
 INSERT INTO Accounts VALUES (1001, 1, 'SAVINGS', 10000);
 INSERT INTO Accounts VALUES (1002, 2, 'SAVINGS', 5000);
@@ -39,10 +33,7 @@ INSERT INTO Employees VALUES (3, 'David', 102, 45000);
 
 COMMIT;
 
---------------------------------------------------
--- SCENARIO 1
--- PROCESS MONTHLY INTEREST
---------------------------------------------------
+
 
 CREATE OR REPLACE PROCEDURE ProcessMonthlyInterest
 AS
@@ -61,25 +52,18 @@ BEGIN
 END;
 /
 
---------------------------------------------------
--- EXECUTE PROCEDURE
---------------------------------------------------
+
 
 BEGIN
     ProcessMonthlyInterest;
 END;
 /
 
---------------------------------------------------
--- CHECK RESULT
---------------------------------------------------
+
 
 SELECT * FROM Accounts;
 
---------------------------------------------------
--- SCENARIO 2
--- UPDATE EMPLOYEE BONUS
---------------------------------------------------
+
 
 CREATE OR REPLACE PROCEDURE UpdateEmployeeBonus(
     p_department_id IN NUMBER,
@@ -102,25 +86,18 @@ BEGIN
 END;
 /
 
---------------------------------------------------
--- EXECUTE PROCEDURE
---------------------------------------------------
+
 
 BEGIN
     UpdateEmployeeBonus(101,10);
 END;
 /
 
---------------------------------------------------
--- CHECK RESULT
---------------------------------------------------
+
 
 SELECT * FROM Employees;
 
---------------------------------------------------
--- SCENARIO 3
--- TRANSFER FUNDS
---------------------------------------------------
+
 
 CREATE OR REPLACE PROCEDURE TransferFunds(
     p_from_account IN NUMBER,
@@ -165,17 +142,13 @@ BEGIN
 END;
 /
 
---------------------------------------------------
--- EXECUTE PROCEDURE
---------------------------------------------------
+
 
 BEGIN
     TransferFunds(1001,1002,500);
 END;
 /
 
---------------------------------------------------
--- CHECK RESULT
---------------------------------------------------
+
 
 SELECT * FROM Accounts;
